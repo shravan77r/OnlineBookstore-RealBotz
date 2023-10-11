@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Bookstore - RealBotz</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="/css/site.css" />
+    <style>
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex-grow: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+
+            .tab.active {
+                background-color: #fff;
+            }
+
+        .tab-content {
+            display: none;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+
+        .profile-picture img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="BookList.html">RealBotz - Bookstore</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="BookList.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge badge-primary badge-pill cart-count">0</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" aria-expanded="false">
+                                <img class="user-img-style" id="mainuserimage" style="width: 40px;" src="" alt="user">
+                                <span class="user-name d-sm-none d-lg-inline-block username"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right pullDown">
+                                <div style="margin-left: 15px" class="dropdown-title username"></div>
+                                <a href="myprofile.html" class="dropdown-item has-icon"> <i class="fas fa-user"></i> My Profile</a>
+                                <a href="myorderlist.html" class="dropdown-item has-icon"> <i class="fas fa-shopping-cart"></i> My Orders</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" id="logout-link" class="dropdown-item has-icon text-danger">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="container mt-5">
+                <h1>My Profile</h1>
+                <hr />
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('profile-picture')">Profile Picture</div>
+                    <div class="tab" onclick="showTab('two-factor-auth')">Two-Factor Authentication</div>
+                </div>
+                <div class="tab-content profile-picture active">
+                    <h2>Change Profile Photo</h2>
+                    <form id="myform" enctype="multipart/form-data">
+                        <div class="profile-picture-container">
+                            <div class="col-md-4">
+                                <img src="" alt="Profile Picture" id="profile-image">
+                            </div>
+                            <div class="col-md-8 mt-2 mb-2">
+                                <div class="form-group">
+                                    <input type="hidden" name="OldProfileImage" id="OldProfileImage" />
+                                    <label for="file-input">Change Profile Photo:</label>
+                                    <input type="file" id="file-input" name="profileImage" class="file-input" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                <div class="tab-content two-factor-auth">
+                    <h2>Two-Factor Authentication</h2>
+                    <label for="enable-2fa">Enable 2FA</label>
+                    <input type="checkbox" id="enable-2fa" name="enable-2fa">
+
+                    <div id="enable-authenticator-container" style="display:none;">
+                        <h4>Enable authenticator</h4>
+                        <p>To use an authenticator app go through the following steps:</p>
+                        <ol class="list">
+                            <li>
+                                <p>
+                                    Download a two-factor authenticator app like Microsoft Authenticator for
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825071">Windows Phone</a>,
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
+                                    Google Authenticator for
+                                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Android</a> and
+                                    <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>Scan the QR Code into your two factor authenticator app. Spaces and casing do not matter.</p>
+                                <div class="alert alert-info">To enable QR code generation please read our <a href="https://go.microsoft.com/fwlink/?Linkid=852423">documentation</a>.</div>
+                                <div class="qr-code">
+                                    <img src="" id="qrcodeImg" alt="">
+                                </div>
+                                <div id="qrCodeData" data-url=""></div>
+                            </li>
+                            <li>
+                                <p>
+                                    Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
+                                    with a unique code. Enter the code in the confirmation box below.
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form id="VerificationCodeForm" method="post">
+                                            <div class="form-group">
+                                                <label for="6digcode" class="control-label">Verification Code</label>
+                                                <input id="6digcode" class="form-control numI" autocomplete="off" maxlength="6" />
+                                            </div>
+                                            <!--<button type="button" onclick="VerifyQrcode()" class="btn btn-primary">Verify</button>-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="divStep3" class="step minimized disabled" style="display:none;">
+                                <div class="step-header">
+                                    <div class="header">Save your recovery codes</div>
+                                </div>
+                                <div class="step-content three">
+                                    <div class="step-wrap p-3">
+                                        <h4 class="primary-color fw-500 mb-2">Save your recovery codes </h4>
+                                        <div class="p-3 grey-bg mb-2">
+                                            <span id="reccode"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mb-3" onclick="download1()"><i class="fa fa-download mr-2"></i>Download </button>
+                                        <p class="fs-16 fw-500 mb-2 text-dark">Why is saving you recovery codes important?</p>
+                                        <p class="fs-16">If you lose access to your phone, you can authenticate using your recovery codes. This is the ONLY way to regain access to your account.</p>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RealBotz_Bookstore
+        </div>
+    </footer>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="/lib/qrcodejs/qrcode.js"></script>
+    <script src="/js/MyProfile.js"></script>
+
+</body>
+</html>

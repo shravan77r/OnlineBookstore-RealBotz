@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Bookstore - RealBotz</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <div class="loader-container" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <div class="container mt-5">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="registrationForm" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="FirstName" class="control-label">First Name<span class="required text-danger">*</span>:</label>
+                                    <input type="text" class="form-control varchar" placeholder="First Name" id="FirstName" name="FirstName" maxlength="100" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="LastName" class="control-label">Last Name<span class="required text-danger">*</span>:</label>
+                                    <input type="text" class="form-control varchar" placeholder="Last Name" id="LastName" name="LastName" maxlength="100" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Email" class="control-label">Email<span class="required text-danger">*</span>:</label>
+                                    <input type="email" id="Email" name="Email" placeholder="Email" class="form-control" maxlength="50" onblur="fnCheckEmailExist()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Password" class="control-label">Password<span class="required text-danger">*</span>:</label>
+                                    <input type="password" id="Password" name="Password" placeholder="Password" class="form-control" maxlength="50" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="MobileNo" class="control-label">Mobile No.<span class="required text-danger">*</span>:</label>
+                                    <input type="text" class="form-control numI" id="MobileNo" placeholder="Mobile No." name="MobileNo" maxlength="10" minlength="10" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Gender">Gender<span class="required text-danger">*</span>:</label>
+                                    <select class="form-control" id="Gender" name="Gender">
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CountryId">Country<span class="required text-danger">*</span>:</label>
+                                    <select class="form-control" id="CountryId" name="CountryId">
+                                        <option value="0">Select Country</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="StateId">State<span class="required text-danger">*</span>:</label>
+                                    <select class="form-control" id="StateId" name="StateId">
+                                        <option value="0">Select State</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CityId">City<span class="required text-danger">*</span>:</label>
+                                    <select class="form-control" id="CityId" name="CityId">
+                                        <option value="0">Select City</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="PinCode" class="control-label">Pin Code.<span class="required text-danger">*</span>:</label>
+                                    <input type="text" class="form-control numI" id="PinCode"placeholder="Pin Code." name="PinCode" maxlength="6" minlength="6" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Address">Address<span class="required text-danger">*</span>:</label>
+                                    <textarea class="form-control" id="Address" name="Address" placeholder="Address" maxlength="500"></textarea>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Photo">Profile Photo:</label>
+                                    <input type="file" class="form-control-file" name="profileImage" accept=".jpg, .jpeg, .png">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Signup</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-2">
+                Already have an account? <a href="index.html">Login</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/js/Signup.js"></script>
+</body>
+</html>

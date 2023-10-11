@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Bookstore - RealBotz</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <div class="loader-container" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="BookList.html">RealBotz - Bookstore</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="BookList.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge badge-primary badge-pill cart-count">0</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" aria-expanded="false">
+                                <img class="user-img-style" id="mainuserimage" style="width: 40px; height: 40px; border-radius: 50%;" src="" alt="user">
+                                <span class="user-name d-sm-none d-lg-inline-block username"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right pullDown">
+                                <div style="margin-left: 15px" class="dropdown-title username"></div>
+                                <a href="myprofile.html" class="dropdown-item has-icon"> <i class="fas fa-user"></i> My Profile</a>
+                                <a href="myorderlist.html" class="dropdown-item has-icon"> <i class="fas fa-shopping-cart"></i> My Orders</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" id="logout-link" class="dropdown-item has-icon text-danger">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="container mt-5">
+                <h1>Shopping Cart</h1>
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-tbody">
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <h4>Total: <span id="GrandTotal"></span></h4>
+                    <a id="btn-ordernow" href="placeorder.html" class="btn btn-primary">Order Now</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RealBotz_Bookstore
+        </div>
+    </footer>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="/js/Cart.js"></script>
+</body>
+</html>
